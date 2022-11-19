@@ -1,15 +1,15 @@
 package com.skypro.calculator.controller;
 
-import com.skypro.calculator.service.ServiceCalculator;
+import com.skypro.calculator.service.CalculatorService;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/calculator")
 @RestController
 public class ControllerCalculator {
 
-private final ServiceCalculator serviceCalculator;
+private final CalculatorService serviceCalculator;
 
-    public ControllerCalculator(ServiceCalculator serviceCalculator) {
+    public ControllerCalculator(CalculatorService serviceCalculator) {
         this.serviceCalculator = serviceCalculator;
     }
 

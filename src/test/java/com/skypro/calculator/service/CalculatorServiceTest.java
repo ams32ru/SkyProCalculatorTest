@@ -2,14 +2,15 @@ package com.skypro.calculator.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ServiceCalculatorTest {
-    private final ServiceCalculator sc = new ServiceCalculator();
+class CalculatorServiceTest {
+    private final CalculatorService sc = new CalculatorService();
     private int a;
     private  int b;
-
 
     @BeforeEach
     void SetNums() {
@@ -17,16 +18,16 @@ class ServiceCalculatorTest {
         b = 5;
     }
 
-
     @Test
     void summPrint() {
         assertEquals(sc.summPrint(a, b)
                 , sc.summPrint(b, a));
     }
 
+
     @Test
     void minusPrint() {
-        int res1 = Integer.parseInt(sc.minusPrint(a, b));
+        int res1 = (sc.minusPrint(a, b));
         assertEquals(res1 + b, a);
     }
 
@@ -38,7 +39,7 @@ class ServiceCalculatorTest {
 
     @Test
     void dividePrint() {
-        int res1 = Integer.parseInt(sc.dividePrint(a, b));
+        int res1 = (sc.dividePrint(a, b));
         assertEquals(res1 * b, a);
     }
 
