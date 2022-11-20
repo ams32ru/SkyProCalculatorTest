@@ -1,52 +1,70 @@
 package com.skypro.calculator.service;
 
 import com.skypro.Exseption.DividerByZeroExsception;
-import org.assertj.core.internal.bytebuddy.asm.Advice;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.springframework.util.Assert;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CalculatorServiceTestParameterized {
 
     private final CalculatorService cs = new CalculatorService();
 
-    static Stream<Arguments> paramForTest() {
-        return Stream.of(Arguments.of(1, 3),
-                Arguments.of(-23, -10),
-                Arguments.of(34, -15));
+    static Stream<Arguments> ParamSumm() {
+        return Stream.of(Arguments.of(1, 3, 4),
+                Arguments.of(-10, -10, -20),
+                Arguments.of(5, -15, -10));
     }
+
+    @ParameterizedTest
+    @MethodSource("ParamSumm")
+    void summPrintTest(int a, int b, int result) {
+        assertEquals(cs.summPrint(a, b), result);
+    }
+
+    static Stream<Arguments> ParamMinus() {
+        return Stream.of(Arguments.of(1, 3, -2),
+                Arguments.of(-10, -10, 0),
+                Arguments.of(5, -15, 20));
+    }
+
+    @ParameterizedTest
+    @MethodSource("ParamMinus")
+    void minusPrint(int a, int b, int result) {
+        assertEquals(cs.minusPrint(a, b), result);
+    }
+
+    static Stream<Arguments> ParamMultiply() {
+        return Stream.of(Arguments.of(2, 3, 6),
+                Arguments.of(-10, -10, 100),
+                Arguments.of(5, -10, -50));
+    }
+
+    @ParameterizedTest
+    @MethodSource("ParamMultiply")
+    void multiplyPrint(int a, int b, int result) {
+        assertEquals(result, cs.multiplyPrint(a, b));
+    }
+
+    static Stream<Arguments> ParamDivide() {
+        return Stream.of(Arguments.of(6, 3, 2),
+                Arguments.of(-10, -10, 1),
+                Arguments.of(10, -5, -2));
+    }
+
+    @ParameterizedTest
+    @MethodSource("ParamDivide")
+    void dividePrint(int a, int b, int result) {
+        assertEquals(result, cs.dividePrint(a, b));
+    }
+
 
     static Stream<Arguments> paramForTestbyZero() {
         return Stream.of(Arguments.of(1, 0));
-    }
-
-    @ParameterizedTest
-    @MethodSource("paramForTest")
-    void summPrint(int a, int b) {
-        cs.summPrint(a, b);
-    }
-
-    @ParameterizedTest
-    @MethodSource("paramForTest")
-    void minusPrint(int a, int b) {
-        cs.minusPrint(a, b);
-    }
-
-    @ParameterizedTest
-    @MethodSource("paramForTest")
-    void multiplyPrint(int a, int b) {
-        cs.multiplyPrint(a, b);
-    }
-
-    @ParameterizedTest
-    @MethodSource("paramForTest")
-    void dividePrint(int a, int b) {
-        cs.dividePrint(a, b);
     }
 
     @ParameterizedTest

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class CalculatorService {
 
 
-    public int summPrint(int a,  int b) {
+    public int summPrint(int a, int b) {
         int result = (a + b);
         return result;
     }
@@ -25,7 +25,7 @@ public class CalculatorService {
 
     public int dividePrint(int a, int b) {
         if (b == 0) {
-            throw new DividerByZeroExsception ("На нуль делить нельзя");
+            throw new DividerByZeroExsception("На нуль делить нельзя");
         }
         int result = (a / b);
         return result;
